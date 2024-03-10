@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html.jinja' %}
+{% block content %}
+<div>Пользователь: {{question.user.nickname}}</div>
+<div>{{question.title}}</div>
+<div>{{question.theme.academic_subject.title}} {{question.theme.academic_class.title}} {{question.theme.title}}</div>
+<div>{{question.body}}</div>
+<div>Ответить</div>
+<div>Ответы:</div>
+<ul>
+{%for answer in answers%}
+    <li>
+    <div>Пользователь: {{answer.user.nickname}}</div>
+    <div>{{answer.body}}</div>
+    </li>
+{%endfor%}
+</ul>
+{%endblock%}

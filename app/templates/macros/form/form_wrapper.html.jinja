@@ -1,0 +1,5 @@
+{% macro form_wrapper(action) %}
+    <form method="post" action="{{ action }}">
+        {{ caller() }}
+    </form>
+{% endmacro %}

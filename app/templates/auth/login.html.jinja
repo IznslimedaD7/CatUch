@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html.jinja' %}
+{% from "macros/form/form_wrapper.html.jinja" import form_wrapper with context %}
+{% from "macros/form/form_input.html.jinja" import form_input with context %}
+{% from "macros/form/form_submit.html.jinja" import form_submit with context %}
+
+{% block content %}
+    {% call form_wrapper(action=url_for('auth.auth'))%} 
+        {{form.hidden_tag()}}
+        {{ form_input(item=form.login)}}
+        {{ form_input(item=form.password)}}
+        {{ form_input(item=form.remember)}}
+        {{ form_submit(text='Войти')}}
+    {% endcall %}
+
+{% endblock %}

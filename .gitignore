@@ -1,0 +1,12 @@
+venv
+app.ini
+run.sh
+venv.sh
+wsgi.py
+node_modules
+__pycache__
+.env
+.idea
+.vscode
+.webassets-cache
+.pytest_cache

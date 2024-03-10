@@ -1,0 +1,6 @@
+#!/bin/sh
+
+source scripts/venv.sh
+
+export FLASK_DEBUG=True
+flask run --port=8080 --host='0.0.0.0'

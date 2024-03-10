@@ -1,0 +1,26 @@
+{% from "macros/edit.html.jinja" import edit with context %}
+{% from "macros/delete.html.jinja" import delete with context %}
+
+{% macro table_row(entity, id, items, action_delete, action_edit=True) %}
+    <tr class="border-b">
+        {% if id|int != 0 %}
+            <td class="p-4 text-left">{{ id }}</td>
+        {% endif %}
+
+        {% if action_edit or action_delete: %}
+            <td class="p-4 text-center">
+                {% if action_edit: %}
+                    {{ edit(url=entity + ".edit", id=id) }}
+                {% endif %}
+
+                {% if action_delete: %}
+                    {{ delete(url=entity + ".delete", id=id) }}
+                {% endif %}
+            </td>
+        {% endif %}
+
+        {% for item in items %}
+            <th class="p-4" scope="col">{{ item }}</th>
+        {% endfor %}
+    </tr>
+{% endmacro %}

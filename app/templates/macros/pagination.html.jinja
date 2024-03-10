@@ -1,0 +1,16 @@
+{% macro pagination(url, entities) -%}
+    {% if entities.has_prev or entities.has_next %}
+        <div class="mt-4 flex justify-between items-center">
+            {% if entities.has_prev %}
+                <a class="inline-block bg-deep-blue p-2 px-4 rounded text-white" href="{{ url_for(url, page = entities.prev_num) }}">Назад</a>
+            {% else %}
+                Вы на первой странице
+            {% endif %}
+            {% if entities.has_next %}
+                <a class="inline-block bg-deep-blue p-2 px-4 rounded text-white" href="{{ url_for(url, page = entities.next_num) }}">Вперед</a>
+            {% else %}
+                Вы на последней странице
+            {% endif %}
+        </div>
+    {% endif %}
+{%- endmacro %}

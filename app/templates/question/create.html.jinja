@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html.jinja' %}
+{% from "macros/form/form_wrapper.html.jinja" import form_wrapper with context %}
+{% from "macros/form/form_input.html.jinja" import form_input with context %}
+{% from "macros/form/form_submit.html.jinja" import form_submit with context %}
+
+
+
+{% block content %}
+    {% call form_wrapper(action=url_for('question.store'))%} 
+        {{form.hidden_tag()}}
+        {{ form_input(item=form.title)}}
+        {{ form_input(item=form.body)}}
+        {{ form_input(item=form.theme)}}
+        {{ form_submit(text='Задать вопрос')}}
+    {% endcall %}
+        {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
+        {{ ckeditor.config(name='body') }}
+{% endblock %}
+
+ 

@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html.jinja' %}
+{% from "macros/form/form_wrapper.html.jinja" import form_wrapper with context %}
+{% from "macros/form/form_input.html.jinja" import form_input with context %}
+{% from "macros/form/form_submit.html.jinja" import form_submit with context %}
+
+{% block content %}
+    {% call form_wrapper(action=url_for('dashboard_theme.update'))%} 
+        {{form.hidden_tag()}}
+        <input type="hidden" name="id" value="{{ theme.id }}" />
+        {{ form_input(item=form.title, value=theme.title)}}
+        {{ form_input(item=form.academic_class)}}
+        {{ form_input(item=form.academic_subject)}}
+        {{ form_submit(text='Изменить')}}
+    {% endcall %}
+
+{% endblock %}

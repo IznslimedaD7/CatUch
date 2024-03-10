@@ -1,0 +1,7 @@
+#!/bin/sh
+
+. venv/bin/activate
+
+export FLASK_APP=app
+export SECRET_KEY='secret'
+export DATABASE_URI='mysql+pymysql://root:Secret&22@localhost/znania'

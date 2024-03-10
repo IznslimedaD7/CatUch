@@ -1,0 +1,7 @@
+{% macro table_wrapper() %}
+    <div class="overflow-x-auto">
+        <table class="table-auto w-full">
+            {{ caller() }}
+        </table>
+    </div>
+{% endmacro %}

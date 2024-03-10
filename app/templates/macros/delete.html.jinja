@@ -1,0 +1,10 @@
+{% macro delete(url, id) -%}
+    <form class="text-center inline-block cursor-pointer"
+        action="{{ url_for(url) }}"
+        onsubmit="return confirm('Подтвердите удаление')" method="post">
+            <input type="hidden" name="id" value="{{id}}" />
+            <button type="submit">
+                delete
+            </button>
+    </form>
+{%- endmacro %}
