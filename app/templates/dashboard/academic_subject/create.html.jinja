@@ -5,7 +5,7 @@
 
 {% block content %}
 {# dashboard/academic_subject/ #}
-    {% call form_wrapper(action=url_for('dashboard_academic_class.store'))%} 
+    {% call form_wrapper(action=url_for('dashboard_academic_subject.store'))%} 
         {{form.hidden_tag()}}
         {{ form_input(item=form.title)}}
         {{ form_submit(text='Создать')}}
