@@ -1,0 +1,10 @@
+{% extends 'layouts/dashboard.html.jinja' %}
+{% from "macros/items/items.html.jinja" import item with context %}
+
+
+{% block content %}
+    <h1 class="text-5xl mb-8 text-center font-semibold text-blue-950 hover:underline"><a href="{{url_for('dashboard_theme.create')}}">Темы</a></h1>
+    {% for theme in themes %}
+    {{item('dashboard_theme', ['ID', 'Название', 'Класс', 'Предмет'], [theme.id, theme.title, theme.academic_class.title, theme.academic_subject.title], 4)}}
+    {% endfor %}
+{% endblock %}

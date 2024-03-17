@@ -3,6 +3,11 @@ from app.controllers.questionController import QuestionController
 from flask_login import login_required
 
 
+@bp.get('/questions/')
+@bp.get('/questions/<id>')
+def index(id=0):
+    return QuestionController.index(id)
+
 @bp.get('/question/create/')
 def create():
     return QuestionController.create()

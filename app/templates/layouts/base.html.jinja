@@ -9,18 +9,20 @@
     <title>CatUch - Платфома помощи со школой</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/main.css') }}">
-    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="font-source">
-    {% include 'layouts/particles/header.html' %}
-<div class="p-20 min-w-44 max-w-[58rem] shadow border-gray-500 min-h-56 rounded-xl m-auto mt-10">
-    {% block content %}
+<body class="font-source overflow-x-hidden">
+    {% block header %}
+
     {% endblock %}
-</div>
+    <main class="bg-blue-400 w-full min-h-[48rem] py-24">
+    <div class="p-12 w-3/4 shadow bg-white border-gray-500 min-h-56 rounded-[4rem] m-auto">
+        {% block content %}
+        {% endblock %}
+    </div>
+    </main>    
     
-
-    {% include 'layouts/particles/footer.html.jinja' %}
+        {% include 'layouts/particles/footer.html.jinja' %}
 </body>
-
 </html>

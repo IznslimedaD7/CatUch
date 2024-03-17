@@ -23,9 +23,6 @@ def create_app(config_class=Config):
     from app.blueprints.main import bp as main_bp
     app.register_blueprint(main_bp)
 
-    from app.blueprints.dashboard.main import bp as dashboard_main_bp
-    app.register_blueprint(dashboard_main_bp)
-
     from app.blueprints.dashboard.academic_subject import bp as dashboard_academic_subject_bp
     app.register_blueprint(dashboard_academic_subject_bp)
 
@@ -38,6 +35,12 @@ def create_app(config_class=Config):
     from app.blueprints.dashboard.role import bp as dashboard_role_bp
     app.register_blueprint(dashboard_role_bp)
 
+    from app.blueprints.dashboard.rating import bp as dashboard_rating_bp
+    app.register_blueprint(dashboard_rating_bp)
+
+    from app.blueprints.dashboard.question import bp as dashboard_question_bp
+    app.register_blueprint(dashboard_question_bp)
+
     from app.blueprints.auth import bp as auth_bp
     app.register_blueprint(auth_bp)
 
@@ -46,6 +49,9 @@ def create_app(config_class=Config):
 
     from app.blueprints.answer import bp as answer_bp
     app.register_blueprint(answer_bp)
+
+    from app.blueprints.profile import bp as profile_bp
+    app.register_blueprint(profile_bp)
 
     return app
     

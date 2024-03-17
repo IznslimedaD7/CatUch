@@ -6,7 +6,7 @@ from app.repositories.academic_subjectRepository import AcademicSubjectRepositor
 class DashboardAcademicSubjectController():
     def index(page=1):
         academic_subjects = AcademicSubjectRepository.all_academic_subject_paginate(page, 10, False)
-        return render_template('dashboard/academic_subject/index.html', academic_subjects=academic_subjects)
+        return render_template('dashboard/academic_subject/index.html.jinja', academic_subjects=academic_subjects)
     
     def create():
         form = AcademicSubjectForm('/dashboard/academic_subjects/create')

@@ -6,7 +6,7 @@ from app.blueprints.dashboard.role.form import RoleForm
 class DashboardRoleController():
     def index(page=1):
         roles = RoleRepository.all_role_paginate(page, 10, False)
-        return render_template('dashboard/role/index.html', roles=roles)
+        return render_template('dashboard/role/index.html.jinja', roles=roles)
     
     def create():
         form = RoleForm('/dashboard/role/create')

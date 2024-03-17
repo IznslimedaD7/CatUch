@@ -1,8 +1,8 @@
 {% from "macros/form/form_label.html.jinja" import form_label with context %}
 
 {% macro form_input(item, value) -%}
-    <div class="mb-3">
+    <div class="mb-4 w-1/2">
         {{ form_label(item.label) }}
-        {{ item(class="block w-full rounded p-2 border border-black", placeholder=item.label.text, value=value) }}
+        {{ item(class="focus-visible:border-1 focus-visible:outline-0 text-3xl block rounded-full w-full p-2 px-4 border text-blue-950 bg-[#c6d3e3]", placeholder=item.label.text, value=value) }}
     </div>
 {%- endmacro %}

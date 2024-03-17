@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html.jinja' %}
+{% from "layouts/particles/header.html.jinja" import header_part with context %}
+{% from "macros/items/question_items.html.jinja" import question_item with context %}
+
+{% block header %}
+{{ header_part(False, 'question', sub, subjects)}}
+{% endblock %}
+{% block content %}
+<h1 class="text-4xl mb-8 text-center font-semibold text-blue-950">Вопросы: {{sub}}</h1>
+{{question_item(qestions, q_dates)}}
+{% endblock %}

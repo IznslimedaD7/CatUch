@@ -1,0 +1,11 @@
+{% extends 'layouts/dashboard.html.jinja' %}
+{% from "macros/items/items.html.jinja" import item with context %}
+
+
+{% block content %}
+    <h1 class="text-5xl mb-8 text-center font-semibold text-blue-950 hover:underline">Рейтинг</h1>
+    {% for question in questions %}
+    {{item('dashboard_rating', ['ID', 'Заголовок', 'Тело вопроса', "Пользователь", "Тема", "Создан"], [question.id, question.title, question.body,
+    question.user.nickname, question.theme.academic_subject.title + question.theme.academic_class.title + question.theme.title, question.created_at], 3)}}
+    {% endfor %}
+{% endblock %}

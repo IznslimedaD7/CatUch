@@ -1,0 +1,13 @@
+{% macro item(entity, columns, items, ranges, action_delete, action_edit=True) %}
+    <ul class="block bg-[#c6d3e3] p-12 mb-6 rounded-3xl m-auto w-3/4 relative">
+    {% for i in range(0, ranges) %}
+        <li class="font-medium text-xl">
+            <span class="font-semibold">{{columns[i]}}:</span> 
+            {{items[i]}}
+        </li> 
+    {% endfor %}
+    {% if action_edit == True %}
+    <a class="transition-all absolute right-5 bottom-3 hover:bg-green-600 bg-green-500 rounded-full p-4 font-semibold text-white" href="{{url_for(entity + '.edit', id=items[0])}}">Редактировать</a>
+    {% endif %}
+    </ul>
+{% endmacro %}

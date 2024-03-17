@@ -6,7 +6,7 @@ from app.repositories.academic_classRepository import AcademicClassRepository
 class DashboardAcademicClassController():
     def index(page=1):
         academic_classes = AcademicClassRepository.all_academic_class_paginate(page, 10, False)
-        return render_template('dashboard/academic_class/index.html', academic_classes=academic_classes)
+        return render_template('dashboard/academic_class/index.html.jinja', academic_classes=academic_classes)
     
     def create():
         form = AcademicClassForm('/dashboard/academic_class/create')

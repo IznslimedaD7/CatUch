@@ -1,0 +1,5 @@
+{% macro nav_item(href, text, class='') -%}
+    <li class="text-semibold inline-block text-4xl text-white hover:bg-blue-900 p-4 transition-all">
+        <a class="p-2 {{ class }}" href="{{ href }}">{{ text }}</a>
+    </li>
+{%- endmacro %}

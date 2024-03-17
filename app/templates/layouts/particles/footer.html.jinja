@@ -1,0 +1,14 @@
+<footer class="min-h-72 bg-blue-950 flex justify-center flex-col items-center">
+    <ul class="flex flex-row text-3xl space-x-8 text-white font-light mb-6">
+        <li><a href="{{url_for('main.main')}}">Главная</a></li>
+        <li><a>Поиск</a></li>
+        {% if current_user.is_authenticated %}
+        <li><a href="{{url_for('profile.index', id=current_user.id)}}">Личный кабинет</a></li>
+        {% else %}
+        <li><a href="{{url_for('auth.login')}}">Войти</a></li>
+        {% endif %}
+        <li><a>Поддержка</a></li>
+        <li><a>FAQ</a></li>
+    </ul>
+    <div class="w-1/12">{% include 'icons/logo.html.jinja'%}</div>
+</footer>

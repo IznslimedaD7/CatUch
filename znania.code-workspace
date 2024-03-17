@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"json.schemaDownload.enable": true,
+		"files.associations": {
+			"*.html": "jinja-html"
+		},
+		"emmet.includeLanguages": {
+			"jinja-html": "html"
+		},
+		"[jinja-html]": {
+			"editor.defaultFormatter": "monosans.djlint",
+			"editor.detectIndentation": false,
+			"editor.tabSize": 2,
+			"editor.formatOnSave": true
+		},
+		"tailwindCSS.includeLanguages": {
+			"plaintext": "jinja-html",
+			"jinja-html": "html",
+			"javascript": "javascript",
+			"css": "css"
+		}
+	}
+}

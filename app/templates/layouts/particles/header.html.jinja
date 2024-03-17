@@ -1,0 +1,72 @@
+{% from "macros/nav/nav_item.html.jinja" import nav_item with context %}
+
+{% macro header_part(dashboard, type, sub, subjects) -%}
+{% if dashboard == True %}
+    <header class="bg-blue-950 w-full min-h-48 pt-6">
+        <div class="w-1/12 ml-8">
+            {% include 'icons/logo.html.jinja'%}
+        </div>
+        <div class="mt-6 ml-8">
+            <ul>
+                {{ nav_item(url_for('dashboard_academic_class.index'), 'Классы') }}
+                {{ nav_item(url_for('dashboard_academic_subject.index'), 'Предметы') }}
+                {{ nav_item(url_for('dashboard_theme.index'), 'Темы') }}
+                {{ nav_item(url_for('dashboard_role.index'), 'Роли') }}
+                {{ nav_item(url_for('dashboard_rating.index'), 'Рейтинг') }}
+                {{ nav_item(url_for('dashboard_question.index'), 'Вопросы') }}
+                <!-- nav_item(url_for('dashboard_user.index'), 'Пользователи')  -->
+            </ul>
+        </div>
+    </header>
+{% else %}
+    <header class="bg-blue-400 w-full min-h-52 pt-5">
+        <div class="w-2/12">{% include 'icons/logo.html.jinja'%}</div>
+        <div class="absolute right-[-6rem] top-12 z-20">
+        <div class="mr-52 flex items-center">
+            {% if current_user.is_authenticated %}
+            <a href="{{url_for('profile.index', id=current_user.id)}}" class="hover:bg-blue-500 rounded-full p-2.5 duration-700 mr-6">
+            <span class="text-blue-950 text-xl font-semibold">{{current_user.nickname}}</span>
+            </a>
+            {% else %}
+            <a href="{{url_for('auth.login')}}" class="hover:bg-blue-500 rounded-full p-2.5 duration-700 mr-6">
+            <span class="text-blue-950 text-xl font-semibold">ВОЙТИ</span>
+            </a>
+            {% endif %}
+            <a href="{{url_for('question.create')}}" class="hover:bg-stone-300 rounded-full p-2.5 duration-700 bg-white mr-6">
+                <span class="text-blue-950 text-xl font-semibold">ЗАДАТЬ ВОПРОС</span>
+            </a>
+            <div class="inline-block h-14 w-14 cursor-pointer">
+                {% include 'icons/seach.html.jinja'%}
+            </div>
+        </div>
+        </div>
+        <div class="w-full bg-blue-100 h-20 pt-4 pl-16">
+            {%if type == 'profile'%}
+            <div class="text-3xl font-normal text-blue-950">Личный кабинет</div>
+            {% elif type == 'question' %}
+            <div class="flex">
+            <div x-data="{ isOpen: false}">
+            <button
+                    @click="isOpen = !isOpen" 
+                    @keydown.escape="isOpen = false" 
+                    class="text-3xl font-normal text-blue-950 cursor-pointer hover:text-blue-900">Выбор предмета</button>
+                    <ul x-show="isOpen"
+                        @click.away="isOpen = false"
+                        class="p-4 bg-slate-100 rounded-lg text-2xl text-center">
+                        <li class="cursor-pointer mb-2 p-2 rounded-md hover:bg-slate-200 transition-all"><a href="{{url_for('question.index')}}">Все</a></li>
+                        {% for subject in subjects %}
+                        <li class="cursor-pointer mb-2 p-2 rounded-md hover:bg-slate-200 transition-all"><a href="{{url_for('question.index', id=subject.id)}}">{{subject.title}}</a></li>
+                        {% endfor %}
+                        </ul>
+            </div>
+            <div class="ml-5 text-3xl font-normal text-blue-950">{{sub}}</div>
+            </div>
+            {% elif type == 'question_create'%}
+            <div class="text-3xl font-normal text-blue-950 hover:underline">
+            <a href="{{url_for('question.index')}}">Создание вопроса</a>
+            </div>
+            {% endif %}
+        </div>
+    </header>
+{% endif %}
+{% endmacro %}

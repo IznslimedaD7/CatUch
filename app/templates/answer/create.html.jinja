@@ -2,14 +2,20 @@
 {% from "macros/form/form_wrapper.html.jinja" import form_wrapper with context %}
 {% from "macros/form/form_input.html.jinja" import form_input with context %}
 {% from "macros/form/form_submit.html.jinja" import form_submit with context %}
+{% from "layouts/particles/header.html.jinja" import header_part with context %}
 
-
+{% block header %}
+{{ header_part(False)}}
+{%endblock%}
 
 {% block content %}
-    <div>
-    <span>Вопрос:</span>
-    <div>{{question.body}}</div>
+    <div class="w-4/5 bg-blue-200 p-8 rounded-xl relative text-blue-950 m-auto">
+    <h1 class="text-4xl mb-8 font-semibold hover:underline"><a href="{{url_for('question.view_question', id=question.id)}}">Вопрос:</a></h1>
+    <div class="inline-block text-2xl font-semibold ml-2">{{question.title}}</div>
+    <div class="mt-4 text-xl ml-4">{{question.body}}</div>
     </div>
+    <div class="w-4/5 bg-blue-200 p-8 rounded-xl relative text-blue-950 m-auto mt-8">
+    <div class="p-6 rounded-xl bg-white">
     {% call form_wrapper(action=url_for('answer.store', id=question.id))%} 
         {{form.hidden_tag()}}
         {{ form_input(item=form.body)}}
@@ -17,4 +23,6 @@
     {% endcall %}
         {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
         {{ ckeditor.config(name='body') }}
+    </div>
+    </div>    
 {% endblock %}

@@ -8,7 +8,7 @@ from app.repositories.academic_subjectRepository import AcademicSubjectRepositor
 class DashboardThemeController():
     def index(page=1):
         themes = ThemeRepository.all_theme_paginate(page, 10, False)
-        return render_template('dashboard/theme/index.html', themes=themes)
+        return render_template('dashboard/theme/index.html.jinja', themes=themes)
     
     def create():
         form = ThemeForm('/dashboard/theme/create')

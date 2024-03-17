@@ -9,4 +9,4 @@ class MainController():
         subjects = AcademicSubjectRepository.academic_subject_choices()
         questions = QuestionRepository.all_question()[-3:]
         q_dates = format_data(QuestionRepository.all_question()[-3:])
-        return render_template('main/main.html', subjects=subjects, questions=questions, q_dates=q_dates)
+        return render_template('main/main.html.jinja', subjects=subjects, questions=questions, q_dates=q_dates)

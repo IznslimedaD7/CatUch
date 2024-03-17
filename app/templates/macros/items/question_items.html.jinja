@@ -1,0 +1,20 @@
+{% macro question_item(qestions, q_dates) %}
+{% for question in questions %}
+            <li class="block w-11/12 h-24 bg-[#c6d3e3] m-auto rounded-2xl mt-6 relative">
+                <div class="w-20 absolute top-[10%] left-8">
+                    {% include 'icons/seach.html.jinja'%}
+                </div>
+                <div class="absolute text-xl p-2 font-normal top-1 left-32">
+                    <span class="mr-3">{{question.user.nickname}}</span>
+                    <span class="font-light mr-3">•</span>
+                    <span>{{question.theme.academic_subject.title}} {{question.theme.academic_class.title}} класс</span>
+                </div>
+                <div class="absolute top-10 text-4xl left-[8.25rem] font-semibold hover:underline">
+                    <a href="{{url_for('question.view_question', id=question.id)}}">{{question.title}}</a>
+                </div>
+                <div class="absolute top-3 text-lg right-12">
+                    {{q_dates[questions.index(question)]}}
+                </div>
+            </li>
+{% endfor %}
+{% endmacro %}

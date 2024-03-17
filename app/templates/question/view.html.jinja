@@ -1,17 +1,36 @@
 {% extends 'layouts/base.html.jinja' %}
+{% from "layouts/particles/header.html.jinja" import header_part with context %}
+
+{% block header %}
+{{ header_part(False)}}
+{%endblock%}
 {% block content %}
-<div>Пользователь: {{question.user.nickname}}</div>
-<div>{{question.title}}</div>
-<div>{{question.theme.academic_subject.title}} {{question.theme.academic_class.title}} {{question.theme.title}}</div>
-<div>{{question.body}}</div>
-<div>Ответить</div>
-<div>Ответы:</div>
-<ul>
-{%for answer in answers%}
-    <li>
-    <div>Пользователь: {{answer.user.nickname}}</div>
-    <div>{{answer.body}}</div>
-    </li>
-{%endfor%}
-</ul>
+<div class="w-4/5 bg-blue-200 p-8 rounded-xl relative text-blue-950 m-auto">
+<a href="{{url_for('profile.index', id=question.user.id)}}">
+<div class="w-24 h-24"><img class="rounded-full" src="{{url_for('static', filename='avatars/'+ question.user.avatar ) }}"></div>
+</a>
+<div class="text-2xl font-semibold absolute left-36 top-8">{{question.user.nickname}}</div>
+<div class="absolute text-lg left-36 top-16">{{q_dates}} {{question.theme.academic_subject.title}} {{question.theme.academic_class.title}} класс {{question.theme.title}}</div>
+{% if answers %}
+<div class="text-xl bg-blue-300 p-2 rounded-full inline-block font-medium absolute right-12 top-6">Ответ дан</div>
+{% endif %}
+<div class="text-4xl ml-4 mt-6 font-semibold">{{question.title}}</div>
+<div class="text-3xl ml-6 mt-8">{{question.body}}</div>
+<a href="{{url_for('answer.create', id=question.id)}}" class="text-2xl p-4 border-blue-950 rounded-full mt-8 inline-block border-2">
++ Добавить ответ <span class="text-xl font-light">+25б.</span>
+</a>
+</div>
+<div class="w-4/5 bg-blue-200 p-8 rounded-xl relative text-blue-950 m-auto mt-12">
+<div class="text-3xl font-semibold mb-8">Ответы</div>
+{% for answer in answers%}
+<div class="relative mb-12">
+<a href="{{url_for('profile.index', id=answer.user.id)}}">
+<div class="w-16 h-16 inline-block"><img class="rounded-full" src="{{url_for('static', filename='avatars/'+ answer.user.avatar ) }}"></div>
+</a>
+<div class="text-xl font-semibold absolute left-20 top-1">{{answer.user.nickname}}</div>
+<div class="text-lg font-normal absolute left-20 top-8">{{answer.user.rating.title}}</div>
+<div class="text-2xl ml-20 mt-8">{{answer.body}}</div>
+</div>
+{% endfor %}
+</div>
 {%endblock%}

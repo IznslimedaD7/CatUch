@@ -1,10 +1,10 @@
-{% extends 'layouts/base.html.jinja' %}
+{% extends 'layouts/dashboard.html.jinja' %}
 {% from "macros/form/form_wrapper.html.jinja" import form_wrapper with context %}
 {% from "macros/form/form_input.html.jinja" import form_input with context %}
 {% from "macros/form/form_submit.html.jinja" import form_submit with context %}
 
 {% block content %}
-{# dashboard/academic_subject/ #}
+    <h1 class="text-4xl mb-8 text-center font-semibold text-blue-950">Редактирование роли ID: {{role.id}}</h1>
     {% call form_wrapper(action=url_for('dashboard_role.update'))%} 
         {{form.hidden_tag()}}
         <input type="hidden" name="id" value="{{ role.id }}" />

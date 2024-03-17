@@ -1,6 +1,7 @@
 from app.extensions import db
 from app.models.question import Question
 from app.models.answer import Answer
+from app.models.theme import Theme
 
 
 class QuestionRepository():
@@ -20,3 +21,15 @@ class QuestionRepository():
     
     def all_question():
         return Question.query.all()
+    
+    def user_question(profile_id):
+        return Question.query.filter_by(user_id=profile_id).all()
+    
+    def quetion_by_theme(subjects_id):
+        q = []
+        theme = Theme.query.filter_by(academic_subject_id=subjects_id).all()
+        for t in theme:
+            qes = Question.query.filter_by(themes_id=t.id).all()
+            for u in qes:
+                q.append(u)
+        return q

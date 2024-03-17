@@ -1,0 +1,16 @@
+{% extends 'layouts/dashboard.html.jinja' %}
+{% from "macros/form/form_wrapper.html.jinja" import form_wrapper with context %}
+{% from "macros/form/form_input.html.jinja" import form_input with context %}
+{% from "macros/form/form_submit.html.jinja" import form_submit with context %}
+
+{% block content %}
+    <h1 class="text-4xl mb-8 text-center font-semibold text-blue-950">Редактирование звания ID: {{rating.id}}</h1>
+    {% call form_wrapper(action=url_for('dashboard_rating.update'))%} 
+        {{form.hidden_tag()}}
+        <input type="hidden" name="id" value="{{ rating.id }}" />
+        {{ form_input(item=form.title, value=rating.title)}}
+        {{ form_input(item=form.description, value=rating.description)}}
+        {{ form_submit(text='Изменить')}}
+    {% endcall %}
+
+{% endblock %}
